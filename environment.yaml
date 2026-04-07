@@ -1,0 +1,17 @@
+name: stat230A
+channels:
+  - defaults
+dependencies:
+  - python=3.14
+  - pip
+  - pip:
+    - numpy
+    - pandas
+    - matplotlib
+    - scikit-learn
+    - scipy
+    - jupyterlab
+    - seaborn
+    - ruff
+    
+  
