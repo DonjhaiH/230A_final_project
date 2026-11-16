@@ -1,14 +1,23 @@
 # Sephora Product Pricing Analysis
 ### STAT 230A Final Project — UC Berkeley, Spring 2026
+*Team project with Destiny Ogu and Wengel Semma.*
 
-An inferential regression analysis investigating which product-level characteristics are associated with price differences across Sephora's catalog. Using a dataset of over 8,000 products scraped from Sephora.com, we fit a series of nested OLS models with log(price) as the response to quantify how ingredients, product categories, and marketing attributes relate to pricing.
+An inferential regression analysis investigating which product-level characteristics are associated with price differences across Sephora's catalog. Starting from 8,494 products scraped from Sephora.com (5,056 after cleaning), we fit a series of nested OLS models with log(price) as the response to quantify how ingredients, product categories, and marketing attributes relate to pricing.
+
+## Key findings
+
+- **Active ingredients carry the biggest premiums.** Holding product category, size, marketing labels and other ingredients fixed, products containing retinol were priced about **42% higher** (log-price coefficient 0.348, p < 0.001).
+- **Sephora exclusives are cheaper, not pricier.** Exclusive products were priced about **18% lower** than comparable non-exclusive products (coefficient −0.198, p < 0.001).
+- **Six nested models** (category, then marketing labels, size, ingredients and interactions) were compared with partial F-tests and robust (HC2) standard errors, with full regression diagnostics.
+
+**Tools:** Python, pandas, statsmodels, scikit-learn, matplotlib, seaborn
 
 ---
 
 ## Repository Structure
 
 ```
-230A_Final_project/
+sephora-pricing-analysis/
 ├── code/
         ├── 01_cleaning.py # Python script to run data cleaning
         ├── 02_modeling.py # Python script to run modeling
@@ -17,7 +26,7 @@ An inferential regression analysis investigating which product-level characteris
     └── full_model.ipynb    # Main notebook: data cleaning, EDA, model fitting, diagnostics
 ├── data/
     ├── new_products.csv  # Cleaned dataset for analysis
-    └── products_df.csv   # Raw dataset scraped from Sephora.com
+    └── products_kaggle.csv   # Raw dataset scraped from Sephora.com
 ├── environment.yaml
 ├── requirements.txt
 └── README.md
@@ -56,8 +65,8 @@ pip install pandas numpy scipy statsmodels scikit-learn matplotlib seaborn jupyt
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/DonjhaiH/230A_final_project.git
-   cd 230A_final_project
+   git clone https://github.com/DonjhaiH/sephora-pricing-analysis.git
+   cd sephora-pricing-analysis
    ```
 
 2. Create and activate conda environment:
@@ -76,7 +85,7 @@ pip install pandas numpy scipy statsmodels scikit-learn matplotlib seaborn jupyt
 
 5. Running python scripts:
     ```bash
-   cd scripts
+   cd code
    python 01_cleaning.py
    python 02_modeling.py
    ```
@@ -85,9 +94,9 @@ pip install pandas numpy scipy statsmodels scikit-learn matplotlib seaborn jupyt
 
 ## Data
 
-`products_df.csv` contains product listings scraped from Sephora.com, including price, product category, size, ingredient lists, and marketing labels (e.g. Sephora Exclusive, Limited Edition). The dataset has over 8,000 observations and was used as-is with cleaning steps documented in the notebook.
+`products_kaggle.csv` contains product listings scraped from Sephora.com, including price, product category, size, ingredient lists, and marketing labels (e.g. Sephora Exclusive, Limited Edition). The dataset has 8,494 observations; cleaning steps are documented in the notebook.
 
-`new_products.csv` is the cleaned version of `products_df.csv`. It contains engineered and transformed features used in nested models for analysis.
+`new_products.csv` is the cleaned version (5,056 products). It contains engineered and transformed features used in nested models for analysis.
 
 ---
 
